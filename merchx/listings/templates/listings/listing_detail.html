@@ -1,0 +1,34 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<h1>{{ listing.title }}</h1>
+
+<p>Mes annonces favorites sont :</p>
+
+<ul>
+    {% if listing.description %}
+    <li>{{ listing.description }}</li>
+    {% endif %}
+
+    {% if listing.type %}
+    <li>{{ listing.type }}</li>
+    {% endif %}
+
+    <li>{{ listing.sold|yesno|upper }}</li>
+
+    {% if listing.year %}
+    <li>{{ listing.year }}</li>
+    {% endif %}
+
+    {% if listing.band %}
+    <li>{{ listing.band }}</li>
+    {% endif %}
+    <!-- <li>{{ listing.band }}</li> -->
+</ul>
+
+<a href="{% url 'listing-update' listing.id %}">Mettre a jour cette annonce</a>
+<a href="{% url 'listing-delete' listing.id %}">Supprimer cette annonce</a>
+<a href="{% url 'listing-list' %}">Retour à toutes les annonces</a>
+
+{% endblock %}
